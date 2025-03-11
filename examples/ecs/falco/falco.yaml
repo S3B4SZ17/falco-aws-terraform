@@ -1,0 +1,25 @@
+engine:
+  kind: nodriver
+
+rules_files:
+  - /etc/falco/falco_rules.local.yaml
+  - /etc/falco/rules.d
+  - /etc/falco/falco_rules.yaml
+  - /etc/falco/aws_cloudtrail_rules.yaml
+  - /etc/falco/falco_sandbox_rules.yaml
+
+plugins:
+  - name: json
+    library_path: libjson.so
+    init_config: ""
+  - name: cloudtrail
+    library_path: libcloudtrail.so
+    init_config: '{"sqsDelete": true}'
+    open_params: "sqs://${sqs_name}"
+load_plugins: [cloudtrail, json]
+json_output: true
+json_include_output_property: true
+json_include_tags_property: true
+http_output:
+  enabled: true
+  url: "http://falco-falcosidekick:2801/"

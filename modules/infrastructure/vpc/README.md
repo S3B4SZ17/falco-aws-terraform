@@ -7,7 +7,7 @@ This module provides the configuration to set up a VPC based on the `terraform-a
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.76.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.19.0 |
 
 ## Requirements
 
@@ -21,27 +21,27 @@ This module provides the configuration to set up a VPC based on the `terraform-a
 The basic usage of this module is as follows:
 
 ```hcl
-module "example" {
-	 source  = "<module-path>"
+  module "example" {
+    	 source  = "<module-path>"
 
 	 # Required variables
-	 name  =
+    	 name  =
 
 	 # Optional variables
-	 cidr_block  = "10.0.0.0/16"
-	 private_subnets  = [
+    	 cidr_block  = "10.0.0.0/16"
+    	 private_subnets  = [
   "10.0.1.0/24",
   "10.0.2.0/24"
 ]
-	 public_subnets  = [
+    	 public_subnets  = [
   "10.0.4.0/24",
   "10.0.5.0/24"
 ]
-	 tags  = {
+    	 tags  = {
   "product": "falcosecurity-for-cloud"
 }
-}
-```
+  }
+  ```
 
 ## Resources
 
@@ -57,9 +57,9 @@ module "example" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_cidr_block"></a> [cidr\_block](#input\_cidr\_block) | The CIDR block for the VPC | `string` | `"10.0.0.0/16"` | no |
 | <a name="input_name"></a> [name](#input\_name) | VPC name | `string` | n/a | yes |
-| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | The private subnets. If you are enabling the VPC module. | `list(string)` | <pre>[<br>  "10.0.1.0/24",<br>  "10.0.2.0/24"<br>]</pre> | no |
-| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | The public subnets. If you are enabling the VPC module. | `list(string)` | <pre>[<br>  "10.0.4.0/24",<br>  "10.0.5.0/24"<br>]</pre> | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | falcosecurity-for-cloud tags. always include 'product' default tag for resource-group proper functioning | `map(string)` | <pre>{<br>  "product": "falcosecurity-for-cloud"<br>}</pre> | no |
+| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | The private subnets. If you are enabling the VPC module. | `list(string)` | <pre>[<br/>  "10.0.1.0/24",<br/>  "10.0.2.0/24"<br/>]</pre> | no |
+| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | The public subnets. If you are enabling the VPC module. | `list(string)` | <pre>[<br/>  "10.0.4.0/24",<br/>  "10.0.5.0/24"<br/>]</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | falcosecurity-for-cloud tags. always include 'product' default tag for resource-group proper functioning | `map(string)` | <pre>{<br/>  "product": "falcosecurity-for-cloud"<br/>}</pre> | no |
 
 ## Modules
 
@@ -71,6 +71,7 @@ module "example" {
 
 | Name | Description |
 |------|-------------|
+| <a name="output_cidr_block"></a> [cidr\_block](#output\_cidr\_block) | The CIDR block for the VPC |
 | <a name="output_private_subnets_details"></a> [private\_subnets\_details](#output\_private\_subnets\_details) | List of private subnets details |
 | <a name="output_private_subnets_ids"></a> [private\_subnets\_ids](#output\_private\_subnets\_ids) | List of private subnets |
 | <a name="output_public_subnets_details"></a> [public\_subnets\_details](#output\_public\_subnets\_details) | List of public subnets details |

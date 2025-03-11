@@ -1,4 +1,3 @@
-#!/bin/sh
 # SPDX-License-Identifier: Apache-2.0
 #
 # Copyright (C) 2023 The Falco Authors.
@@ -17,16 +16,14 @@
 # limitations under the License.
 #
 
-set -euxo pipefail
+locals {
+  cloudtrail_deploy  = var.cloudtrail_sns_arn == "create"
+  cloudtrail_sns_arn = local.cloudtrail_deploy ? module.cloudtrail[0].sns_topic_arn : var.cloudtrail_sns_arn
+}
 
-cd examples/single-account
-terraform init
-terraform validate
-
-cd ../../examples/single-account-full-eks
-terraform init
-terraform validate
-
-cd ../../examples/ecs
-terraform init
-terraform validate
+module "sqs_sns_subscription" {
+  source        = "../../modules/infrastructure/sqs-sns-subscription"
+  name          = var.name
+  sns_topic_arn = local.cloudtrail_sns_arn
+  tags          = var.tags
+}

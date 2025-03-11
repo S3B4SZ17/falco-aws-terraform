@@ -23,3 +23,7 @@ output "public_subnets_details" {
   value       = data.aws_subnet.public
 }
 
+output "cidr_block" {
+  description = "The CIDR block for the VPC"
+  value       = module.vpc.vpc_cidr_block
+}

@@ -129,20 +129,20 @@ falcosidekick:
 The basic usage of this module is as follows:
 
 ```hcl
-module "example" {
-	 source  = "<module-path>"
+  module "example" {
+    	 source  = "<module-path>"
 
 	 # Optional variables
-	 aws_region  = "us-west-1"
-	 cloudtrail_is_multi_region_trail  = true
-	 cloudtrail_kms_enable  = true
-	 cloudtrail_sns_arn  = "create"
-	 name  = "ffc"
-	 tags  = {
+    	 aws_region  = "us-west-1"
+    	 cloudtrail_is_multi_region_trail  = true
+    	 cloudtrail_kms_enable  = true
+    	 cloudtrail_sns_arn  = "create"
+    	 name  = "ffc"
+    	 tags  = {
   "product": "falcosecurity-for-cloud"
 }
-}
-```
+  }
+  ```
 
 ## Resources
 
@@ -162,7 +162,7 @@ module "example" {
 | <a name="input_cloudtrail_kms_enable"></a> [cloudtrail\_kms\_enable](#input\_cloudtrail\_kms\_enable) | true/false whether cloudtrail delivered events to S3 should persist encrypted | `bool` | `true` | no |
 | <a name="input_cloudtrail_sns_arn"></a> [cloudtrail\_sns\_arn](#input\_cloudtrail\_sns\_arn) | ARN of a pre-existing cloudtrail\_sns. If defaulted, a new cloudtrail will be created | `string` | `"create"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | `"ffc"` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | falcosecurity-for-cloud tags. always include 'product' default tag for resource-group proper functioning | `map(string)` | <pre>{<br>  "product": "falcosecurity-for-cloud"<br>}</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | falcosecurity-for-cloud tags. always include 'product' default tag for resource-group proper functioning | `map(string)` | <pre>{<br/>  "product": "falcosecurity-for-cloud"<br/>}</pre> | no |
 
 ## Modules
 

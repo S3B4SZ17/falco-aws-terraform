@@ -1,4 +1,3 @@
-#!/bin/sh
 # SPDX-License-Identifier: Apache-2.0
 #
 # Copyright (C) 2023 The Falco Authors.
@@ -17,16 +16,14 @@
 # limitations under the License.
 #
 
-set -euxo pipefail
+module "cloudtrail" {
+  count                 = local.cloudtrail_deploy ? 1 : 0
+  source                = "../../modules/infrastructure/cloudtrail"
+  name                  = var.name
+  is_organizational     = false
+  is_multi_region_trail = var.cloudtrail_is_multi_region_trail
+  cloudtrail_kms_enable = var.cloudtrail_kms_enable
 
-cd examples/single-account
-terraform init
-terraform validate
+  tags = var.tags
+}
 
-cd ../../examples/single-account-full-eks
-terraform init
-terraform validate
-
-cd ../../examples/ecs
-terraform init
-terraform validate
