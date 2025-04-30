@@ -131,10 +131,33 @@ falcosidekick:
   webui:
     enabled: true
     replicaCount: 1
-    # service:
-    #   # -- The web UI service type
-    #   type: NodePort
-    #   nodePort: 30282
+    service:
+      # -- The web UI service type
+      type: ClusterIP
+      nodePort: 30282
+    ingress:
+      # -- Whether to create the Web UI ingress
+      enabled: true
+      # -- ingress class name
+      ingressClassName: "nginx"
+      # --  Web UI ingress annotations
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        # AWS-specific annotations for SSL and the load balancer
+        alb.ingress.kubernetes.io/scheme: "internet-facing"
+        alb.ingress.kubernetes.io/target-type: "ip"
+        alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+        alb.ingress.kubernetes.io/ssl-redirect: '443'
+        nginx.ingress.kubernetes.io/rewrite-target: /
+      # --  Web UI ingress hosts configuration
+      hosts:
+        - paths:
+          - path: /
+      # --  Web UI ingress TLS configuration
+      tls: []
+      #  - secretName: chart-example-tls
+      #    hosts:
+      #      - chart-example.local
   replicaCount: 1
 
 # Commented out since merged with terraform in the init provisioning

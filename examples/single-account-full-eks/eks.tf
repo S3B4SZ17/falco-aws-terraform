@@ -117,7 +117,6 @@ resource "helm_release" "k8saudit" {
       cluster_name  = module.eks_cluster.cluster_name
     })
   ]
-
   depends_on = [helm_release.falco]
 }
 
